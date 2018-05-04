@@ -2,6 +2,7 @@ package com.beestar.jzb.newweathercode.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beestar.jzb.newweathercode.R;
 
@@ -17,7 +19,8 @@ import com.beestar.jzb.newweathercode.R;
  */
 public class BlueToothInfoFragment extends Fragment implements View.OnClickListener {
 
-
+    private static final String FRAGMENTTAG="BLUETOOTHINFOFRAGMENTTAG";
+    private int fragmentTag;
     private ImageView mInfoBgStation;
     private ImageView mIconWeather;
     private TextView mTimeFlush;
@@ -51,19 +54,27 @@ public class BlueToothInfoFragment extends Fragment implements View.OnClickListe
 
     public static BlueToothInfoFragment newInstance(int tag) {
 
-        Bundle args = new Bundle();
-
         BlueToothInfoFragment fragment = new BlueToothInfoFragment();
-
+        Bundle args = new Bundle();
+        args.putInt(FRAGMENTTAG, tag);
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            fragmentTag = getArguments().getInt(FRAGMENTTAG);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_blue_tooth_info, container, false);
-
+        initView(view);
 
         return view;
     }
@@ -105,13 +116,15 @@ public class BlueToothInfoFragment extends Fragment implements View.OnClickListe
         switch (v.getId()) {
             case R.id.call_btn:
                 // TODO 18/05/04 呼叫
+                Toast.makeText(getContext(),"call"+fragmentTag,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.on_off_discrib_btn:
                 // TODO 18/05/04 勿扰
+                Toast.makeText(getContext(),"discrib"+fragmentTag,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.updatetime_formstation_btn:
                 // TODO 18/05/04 更新时间
-
+                Toast.makeText(getContext(),"updatatime"+fragmentTag,Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

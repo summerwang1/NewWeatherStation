@@ -1,6 +1,7 @@
 package com.beestar.jzb.newweathercode.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,10 +15,13 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.beestar.jzb.newweathercode.MyAPP;
 import com.beestar.jzb.newweathercode.R;
+import com.beestar.jzb.newweathercode.adapter.FragmentViewPagerAdapter;
 import com.beestar.jzb.newweathercode.bean.DeviceBean;
+import com.beestar.jzb.newweathercode.fragment.BlueToothInfoFragment;
 import com.beestar.jzb.newweathercode.gen.DeviceBeanDao;
 import com.beestar.jzb.newweathercode.helper.PermissionHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StationInfoActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,6 +37,7 @@ public class StationInfoActivity extends AppCompatActivity implements View.OnCli
     private ImageView mSettingStation;
     private DeviceBeanDao deviceBeanDao;
     private List<DeviceBean> list;
+    private FragmentViewPagerAdapter fragmentViewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +47,22 @@ public class StationInfoActivity extends AppCompatActivity implements View.OnCli
         list = deviceBeanDao.queryBuilder().list();
         initView();
         setVPLimit();
+        setFragmentdata();
         getPermission();
     }
 
-    private void setVPLimit() {
+    private void setFragmentdata() {
+        List<Fragment> fml=new ArrayList<>();
+        for (int i=0;i<4;i++){
+            fml.add(BlueToothInfoFragment.newInstance(i));
+        }
+        fragmentViewPagerAdapter.addFragmentData(fml);
+    }
 
+    private void setVPLimit() {
+        mInfoVpStation.setOffscreenPageLimit(4);
+        fragmentViewPagerAdapter = new FragmentViewPagerAdapter(getSupportFragmentManager(), new ArrayList<Fragment>());
+        mInfoVpStation.setAdapter(fragmentViewPagerAdapter);
     }
 
     private void initView() {

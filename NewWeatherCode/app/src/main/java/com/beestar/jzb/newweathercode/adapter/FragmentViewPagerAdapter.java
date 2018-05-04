@@ -40,4 +40,9 @@ public class FragmentViewPagerAdapter extends FragmentPagerAdapter {
     public int getPostion(){
         return viewPagePosition;
     }
+    public void addFragmentData(List<Fragment> fmData){
+        fragmentList.clear();
+        fragmentList.addAll(fmData);
+        notifyDataSetChanged();
+    }
 }
