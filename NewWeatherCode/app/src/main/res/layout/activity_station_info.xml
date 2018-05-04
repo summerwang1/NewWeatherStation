@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.beestar.jzb.newweathercode.ui.StationInfoActivity">
+
+    <ImageView
+        android:id="@+id/station_info_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bj1" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <RelativeLayout
+            android:id="@+id/layout_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+           >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/an_lb"
+                android:id="@+id/staion_menu"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="5dp"
+                android:src="@mipmap/an_sz"
+                android:id="@+id/station_setting"
+                />
+
+        </RelativeLayout>
+       <android.support.v4.view.ViewPager
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/station_info_vp"
+           >
+       </android.support.v4.view.ViewPager>
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

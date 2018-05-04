@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="text_color">#383838</color>
+
+    <color name="location_text_color1">#468f68</color>
+    <color name="location_text_color2">#a5a436</color>
+    <color name="location_text_color3">#ab7e4b</color>
+    <color name="location_text_color4">#d64688</color>
+    <color name="location_text_color5">#925fb0</color>
+    <color name="location_text_color6">#c13e3e</color>
+
+    <color name="pm_text_color1">#8bbe9f</color>
+    <color name="pm_text_color2">#cecd8e</color>
+    <color name="pm_text_color3">#d4b898</color>
+    <color name="pm_text_color4">#e1bacc</color>
+    <color name="pm_text_color5">#c5acd3</color>
+    <color name="pm_text_color6">#e6a6a6</color>
+
+    <color name="betrry_color">#383838</color>
+    <color name="betrry_color2">#f39700</color>
+    <color name="betrry_color3">#ff4d7f</color>
+
+</resources>

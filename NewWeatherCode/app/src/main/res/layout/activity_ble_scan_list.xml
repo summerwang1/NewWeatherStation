@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/qxz_dl_bj"
+    tools:context="com.beestar.jzb.newweathercode.ui.addstation.BleScanListActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#20272d"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/qxz_dl_an_fh"
+            android:id="@+id/back_bleScan"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加设备"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/qxz_tjsb_tyan_gb"
+            android:id="@+id/close_bleScan"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--蓝牙未开启-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/phone_bluetooth_off"
+
+            >
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@mipmap/qxz_tjsb_tb_ly"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="80dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请打开蓝牙"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应用程序使用蓝牙来连接至"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您的随身气象站设备"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </LinearLayout>
+        <!--蓝牙已开启-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/phone_bluetooth_on"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@mipmap/qxz_tjsb_tb_ss"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/scan_stastu"
+                        android:layout_gravity="center_horizontal"
+                        android:text="正在搜索..."
+                        android:gravity="center"
+                        android:textColor="#898989"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="请确认随身气象站的编码"
+                    android:gravity="center"
+                    android:textColor="#898989"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dev_list"
+                    android:layout_marginTop="10dp"
+
+                    >
+                </android.support.v7.widget.RecyclerView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

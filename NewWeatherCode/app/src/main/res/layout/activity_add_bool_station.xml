@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context="com.beestar.jzb.newweathercode.ui.addstation.AddBoolStationActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#20272d"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/qxz_dl_an_fh"
+            android:id="@+id/back"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加设备"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_centerInParent="true"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/qxz_tjsb_tyan_gb"
+            android:id="@+id/close"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        >
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="开启您的随身气象站设备"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="请按下并按住电源按钮5秒。开启后,"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:textSize="19sp"
+                android:layout_marginTop="20dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="红、蓝指示灯同时亮起1秒"
+                android:textColor="@android:color/black"
+                android:gravity="center"
+                android:textSize="19sp"
+                android:layout_marginTop="10dp"
+                />
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/next_station_off"
+            android:layout_alignParentBottom="true"
+            android:text="开启设备无反应,怎么办?"
+            android:background="@null"
+            android:layout_marginBottom="60dp"
+            android:textColor="#00a3f2"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/next_btn"
+            android:layout_alignParentBottom="true"
+            android:text="好的,指示灯在闪烁"
+            android:background="#00a3f2"
+            android:textColor="@android:color/white"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

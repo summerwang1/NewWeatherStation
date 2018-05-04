@@ -1,0 +1,464 @@
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.beestar.jzb.newweathercode.fragment.BlueToothInfoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ImageView
+        android:id="@+id/station_info_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@mipmap/bj1" />
+
+
+
+    <RelativeLayout
+        android:id="@+id/layout_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_1"
+        app:layout_heightPercent="7%"
+        app:layout_widthPercent="100%">
+
+        <ImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/weather0" />
+
+        <TextView
+            android:id="@+id/flush_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:text="20:00 发布"
+            android:textColor="#383838"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_2"
+        app:layout_heightPercent="7%"
+        app:layout_widthPercent="100%">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:text="南京"
+            android:textColor="@color/location_text_color1"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_3"
+        app:layout_heightPercent="7%"
+        app:layout_widthPercent="100%">
+
+        <View
+            android:id="@+id/center_view"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:background="@null" />
+
+        <TextView
+            android:id="@+id/air_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/center_view"
+            android:text="优"
+            android:textColor="@color/location_text_color1"
+            android:textSize="24sp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/center_view"
+            android:src="@mipmap/tb_aqi1" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_4"
+        app:layout_heightPercent="7%"
+        app:layout_widthPercent="100%">
+
+        <View
+            android:id="@+id/center_view2"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_centerInParent="true"
+            android:background="@null" />
+
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="19dp"
+            android:layout_toStartOf="@+id/center_view2"
+            android:text="20℃"
+            android:textColor="@color/location_text_color1"
+            android:textSize="22sp" />
+
+        <ImageView
+            android:id="@+id/temp_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/temp"
+            android:src="@mipmap/tb_wd1" />
+
+        <ImageView
+            android:id="@+id/pm_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/center_view2"
+            android:src="@mipmap/tb_pm1" />
+
+        <TextView
+            android:id="@+id/pm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/pm_icon"
+            android:text="100"
+            android:textColor="@color/location_text_color1"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/pm"
+            android:layout_alignBottom="@+id/pm"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toEndOf="@+id/pm"
+            android:text="μg/m³"
+            android:textColor="@color/location_text_color1"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_5"
+        app:layout_heightPercent="5%"
+        app:layout_widthPercent="100%">
+
+        <TextView
+            android:id="@+id/mystation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的随身气象站"
+            android:textColor="@color/text_color"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_6"
+        app:layout_heightPercent="5%"
+        app:layout_widthPercent="100%">
+
+        <TextView
+            android:id="@+id/station_info_range"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="与你距离远"
+            android:textColor="@color/text_color" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_toStartOf="@id/station_info_range"
+            android:src="@mipmap/tb_ly" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@id/station_info_range"
+            android:src="@mipmap/tb_dc1" />
+
+    </RelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        android:id="@+id/layout_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/layout_7"
+        app:layout_heightPercent="40%"
+        app:layout_widthPercent="100%">
+        >
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/mb5"
+            app:layout_heightPercent="100%"
+            app:layout_widthPercent="60%" />
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            app:layout_heightPercent="70%"
+            app:layout_widthPercent="50%"
+            >
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_heightPercent="20%"
+                app:layout_widthPercent="100%"
+                android:id="@+id/rela_1"
+                >
+                <View
+                    android:id="@+id/center_View3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true" />
+
+                <TextView
+                    android:id="@+id/on_off_discrib_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="已开启勿扰"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_toEndOf="@+id/center_View3"
+                    android:src="@mipmap/an_wr1"
+                    android:id="@+id/on_off_discrib_btn"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_heightPercent="20%"
+                app:layout_widthPercent="100%"
+                android:id="@+id/rela_2"
+                android:layout_below="@id/rela_1"
+                >
+                <View
+                    android:id="@+id/center_View4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true" />
+
+
+                <ImageView
+                    android:id="@+id/temp_icon_formstation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="60dp"
+                    android:layout_toStartOf="@id/center_View4"
+                    android:src="@mipmap/tb_sjwd1" />
+
+                <TextView
+                    android:id="@+id/temp_fromstation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="11dp"
+                    android:layout_toStartOf="@+id/center_View4"
+                    android:text="20"
+                    android:textColor="@color/location_text_color2"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/temp_fromstation_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="11dp"
+                    android:layout_toEndOf="@+id/center_View4"
+                    android:text="℃"
+                    android:textColor="@color/location_text_color2"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_heightPercent="20%"
+                app:layout_widthPercent="100%"
+                android:id="@+id/rela_3"
+                android:layout_below="@id/rela_2"
+                >
+                <View
+                    android:id="@+id/center_View5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true" />
+
+
+                <ImageView
+                    android:id="@+id/hum_icon_formstation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="60dp"
+                    android:layout_toStartOf="@id/center_View5"
+                    android:src="@mipmap/tb_sjsd1" />
+
+                <TextView
+                    android:id="@+id/hum_fromstation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="11dp"
+                    android:layout_toStartOf="@+id/center_View5"
+                    android:text="65"
+                    android:textColor="@color/location_text_color2"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/hum_fromstation_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="11dp"
+                    android:layout_toEndOf="@+id/center_View5"
+                    android:text="%"
+                    android:textColor="@color/location_text_color2"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_toEndOf="@id/center_View5"
+                    android:src="@mipmap/an_sjls" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_heightPercent="20%"
+                app:layout_widthPercent="100%"
+                android:id="@+id/rela_4"
+                android:layout_below="@id/rela_3"
+                >
+                <View
+                    android:id="@+id/center_View6"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true" />
+
+                <ImageView
+                    android:id="@+id/airpower_icon_formstation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="60dp"
+                    android:layout_toStartOf="@id/center_View6"
+                    android:src="@mipmap/tb_sjdq1" />
+
+                <TextView
+                    android:id="@+id/airpower_fromstation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="11dp"
+                    android:text="1025"
+                    android:textColor="@color/location_text_color2"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/airpower_fromstation_unit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/airpower_icon_formstation"
+                    android:layout_toEndOf="@+id/airpower_fromstation"
+                    android:text="HPA"
+                    android:textColor="@color/location_text_color2"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_heightPercent="20%"
+                app:layout_widthPercent="100%"
+                android:id="@+id/rela_5"
+                android:layout_below="@id/rela_4"
+                >
+                <TextView
+                    android:id="@+id/updatetime_formstation_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="上次更新 20:00"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@id/updatetime_formstation_text"
+                    android:src="@mipmap/an_sx1"
+                    android:id="@+id/updatetime_formstation_btn"
+                    />
+
+            </RelativeLayout>
+
+
+        </android.support.percent.PercentRelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_8"
+        >
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:id="@+id/call_btn"
+            android:src="@mipmap/an_hj1" />
+    </RelativeLayout>
+
+</android.support.percent.PercentRelativeLayout>

@@ -1,0 +1,80 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@mipmap/qxz_dl_bj"
+    tools:context="com.beestar.jzb.newweathercode.ui.login_rigister.LoginActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/qxz_dl_an_fh"
+                android:id="@+id/back"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登录"
+                android:textSize="28sp"
+                android:layout_margin="8dp"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/uesrName"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="50dp"
+            android:background="@mipmap/qxz_dl_srk_1"
+            android:hint="请输入用户名"
+            android:paddingLeft="10dp"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/uesrName"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/qxz_dl_srk_1"
+            android:hint="请输入密码"
+            android:paddingLeft="10dp"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:singleLine="true" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+           >
+            <Button
+            android:id="@+id/email_sign_in_button"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="18dp"
+                android:background="@mipmap/qxz_dl_an_dl"
+            android:text="登录"
+            android:textStyle="bold" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

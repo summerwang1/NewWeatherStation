@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/qxz_dl_bj"
+    android:orientation="vertical"
+    tools:context="com.beestar.jzb.newweathercode.ui.myinfo.AboutAppActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#20272d"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:src="@mipmap/qxz_dl_an_fh"
+            android:id="@+id/back"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="关于程序"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="我的气象站应用程序"
+        android:layout_gravity="center_horizontal"
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@android:color/white"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="版本1.0(版本号 1804)"
+        android:id="@+id/version"
+        android:textColor="#95a1aa"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/qxz_sysz_tb1"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="我的气象站,由您定义"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#95a1aa"
+        android:text="无论您是否在家,都可以通过的我的气象站设备"
+        android:layout_gravity="center_horizontal"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#95a1aa"
+        android:text="检测设变的气候变化"
+        android:layout_gravity="center_horizontal"
+        android:textSize="14sp"
+        android:layout_marginTop="20dp"
+        />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="版权说明"
+        android:layout_marginTop="40dp"
+        android:textColor="#00a3f2"
+        android:textSize="24sp"
+        android:id="@+id/notice"
+        android:background="@null"
+        />
+
+
+</LinearLayout>

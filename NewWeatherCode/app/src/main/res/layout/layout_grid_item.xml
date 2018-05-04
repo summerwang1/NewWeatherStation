@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/rela_all"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#414448"
+            android:alpha="0.6"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:id="@+id/rela_stationinfo"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sb_item"
+
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:src="@mipmap/qxz_sy_tb_sbxh2"
+                    android:layout_margin="2dp"
+                    android:id="@+id/conn_item"
+                    android:layout_centerHorizontal="true"
+                    />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/ss_item"
+                android:layout_width="match_parent"
+                android:layout_below="@id/sb_item"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/qxz_sy_tb_ssqxz"
+                android:layout_margin="8dp"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="随身气象站"
+                android:layout_below="@+id/ss_item"
+                android:id="@+id/station_name"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:layout_margin="10dp"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rela_add_tj"
+
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/qxz_sy_an_tj2"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!--android:src="@mipmap/qxz_sy_an_tj2"-->
+</RelativeLayout>
