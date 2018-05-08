@@ -71,6 +71,7 @@ public class GridViewAdapter extends BaseAdapter {
             viewHodler.mNameStation.setText(list.get(position).getSecondName());//名称
             if (list.get(position).getType()== Keyparameter.BLETYPECODE){//随身气象站
                 viewHodler.mItemSs.setImageResource(R.mipmap.qxz_sy_tb_ssqxz);
+                viewHodler.mNameStation.setText(list.get(position).getName());
                 if (list.get(position).getIsConn()){
                     viewHodler.conn_item.setImageResource(R.mipmap.qxz_sy_tb_sbxh2);
                 }else {
@@ -119,9 +120,13 @@ public class GridViewAdapter extends BaseAdapter {
         private RelativeLayout mAddTjRela;
     }
     public void add(List<DeviceBean> data){
-        list.clear();
+
         list.addAll(data);
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
+    }
+    public void clear(){
+        list.clear();
+//        notifyDataSetChanged();
     }
 
 }

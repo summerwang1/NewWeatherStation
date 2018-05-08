@@ -1,5 +1,7 @@
 package com.beestar.jzb.newweathercode.utils;
 
+import android.app.ActivityManager;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -32,4 +34,5 @@ public class TimeUtils {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
         return simpleDateFormat.format(date);
     }
+
 }

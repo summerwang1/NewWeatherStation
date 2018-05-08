@@ -81,7 +81,8 @@
                         android:layout_height="160dp"
                         android:layout_below="@id/text_my_station"
                         android:layout_margin="8dp"
-
+                        android:scaleType="fitXY"
+                        android:src="@mipmap/sy_title"
                         />
                 </RelativeLayout>
                 <RelativeLayout
@@ -300,8 +301,8 @@
                     <android.support.v7.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:id="@+id/recycleView"
-                        android:background="#a88"
                         >
                     </android.support.v7.widget.RecyclerView>
                     <!--qxl_image   20-->
@@ -310,12 +311,10 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/qxl_image"
                         android:layout_marginTop="20dp"
-                        android:background="#b00"
                         />
                 </LinearLayout>
 
             </android.support.percent.PercentRelativeLayout>
-
         </ScrollView>
     </android.support.percent.PercentRelativeLayout>
 </RelativeLayout>

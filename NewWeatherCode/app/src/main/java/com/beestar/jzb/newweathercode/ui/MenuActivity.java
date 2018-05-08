@@ -1,8 +1,13 @@
 package com.beestar.jzb.newweathercode.ui;
 
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -19,17 +24,24 @@ import com.baidu.location.LocationClientOption;
 import com.beestar.jzb.newweathercode.MyAPP;
 import com.beestar.jzb.newweathercode.R;
 import com.beestar.jzb.newweathercode.adapter.GridViewAdapter;
+import com.beestar.jzb.newweathercode.adapter.RecycleViewAdapter;
 import com.beestar.jzb.newweathercode.bean.DeviceBean;
 import com.beestar.jzb.newweathercode.bean.Weather_Bean;
+import com.beestar.jzb.newweathercode.gen.DeviceBeanDao;
 import com.beestar.jzb.newweathercode.helper.PermissionHelper;
+import com.beestar.jzb.newweathercode.service.MyServiceBlueTooth;
 import com.beestar.jzb.newweathercode.ui.addstation.AddBoolBlueToothActivity;
 import com.beestar.jzb.newweathercode.ui.myinfo.MyHomeActivity;
 import com.beestar.jzb.newweathercode.utils.ScreenHeight;
 import com.beestar.jzb.newweathercode.utils.URL;
 import com.beestar.jzb.newweathercode.view.MyGridView;
+import com.squareup.picasso.Picasso;
 import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MenuActivity extends BaseActivity implements View.OnClickListener {
@@ -60,6 +72,10 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
     private TextView mMyLoction;
     private TextView mMassAir;
     private TextView mWindpower;
+    private LinearLayoutManager linearLayoutManager;
+    private RecycleViewAdapter recycleViewAdapter;
+    private DeviceBeanDao deviceBeanDao;
+    private List<DeviceBean> list;
 
     private class MyLocationListener extends BDAbstractLocationListener {
         @Override
@@ -79,19 +95,42 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        deviceBeanDao = MyAPP.getContext().getDaoSession().getDeviceBeanDao();
         initView();
-
+        setRecycleViewData();
         getLocation();
+        data = deviceBeanDao.queryBuilder().list();
 
-        for (int i = 0; i < 3; i++) {
-            data.add(new DeviceBean("测试", "测试", "mac", false, false, 2));
-        }
         if (data.size() <= 5) {
             m3Rela.getLayoutParams().height = (int) (ScreenHeight.getDeviceHeight(this) * (0.38));
         } else {
             m3Rela.getLayoutParams().height = (int) (ScreenHeight.getDeviceHeight(this) * (0.19 * ((data.size() / 3) + 1)));
         }
+
+
+    }
+    //主页24小时预报 控件属性
+    private void setRecycleViewData() {
+        mRecycleView.setHasFixedSize(true);//设置固定大小
+        mRecycleView.setItemAnimator(new DefaultItemAnimator());//设置默认动画
+        linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(OrientationHelper.HORIZONTAL);//设置滚动方向，横向滚动
+        mRecycleView.setLayoutManager(linearLayoutManager);
+        recycleViewAdapter = new RecycleViewAdapter(MyAPP.getContext(), new ArrayList<Weather_Bean.ResultBeanX.ResultBean.HourlyBean>(), new ArrayList<Boolean>());
+        mRecycleView.setAdapter(recycleViewAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!isServiceRunning()){
+            startService(new Intent(MenuActivity.this, MyServiceBlueTooth.class));
+        }
+        data = deviceBeanDao.queryBuilder().list();
+        gridViewAdapter.clear();
         gridViewAdapter.add(data);
+        gridViewAdapter.notifyDataSetChanged();
+
 
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -113,9 +152,8 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
     }
-
+    //获取天气信息
     private void getWeatherInfor(String city) {
         MyAPP.getContext().getMyOkHttp().post()
                 .url(URL.url_weather)
@@ -127,7 +165,6 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
                     public void onFailure(int statusCode, String error_msg) {
 
                     }
-
                     @Override
                     public void onSuccess(int statusCode, Weather_Bean response) {
                         Weather_Bean.ResultBeanX result = response.getResult();
@@ -159,6 +196,8 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
                         } else if (i > 300 && i < 500) {
                             mMassAir.setText("严重污染");
                         }
+                        recycleViewAdapter.addData(response.getResult().getResult().getHourly());
+                        mTimeFlush.setText(response.getResult().getResult().getUpdatetime().substring(10)+"发布");
                     }
                 });
     }
@@ -247,6 +286,8 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
         mMyLoction = (TextView) findViewById(R.id.loction_my);
         mMassAir = (TextView) findViewById(R.id.air_mass);
         mWindpower = (TextView) findViewById(R.id.windpower);
+
+        Picasso.with(MenuActivity.this).load("http://123.207.173.111/PWS/images/calendar/0408-cover.jpg").into(mImageQxl);
     }
 
     @Override
@@ -264,4 +305,42 @@ public class MenuActivity extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+    private String getDate(){
+        String[] weeks = {"星期日","星期一","星期二","星期三","星期四","星期五","星期六"};
+        Calendar c = Calendar.getInstance();
+        String m = "", d = "";
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH) + 1;
+        if (month <= 9){
+            m = "0" + month;
+        }else{
+            m = month + "";
+        }
+        int day = c.get(Calendar.DAY_OF_MONTH);
+        if (day <= 9){
+            d = "0" + day;
+        }else{
+            d = day + "";
+        }
+        int week_index = c.get(Calendar.DAY_OF_WEEK) - 1;
+        if(week_index<0){
+            week_index = 0;
+        }
+        return year+"-"+m+"-"+d;
+    }
+
+    private boolean isServiceRunning() {
+        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if ("com.beestar.jzb.newweathercode.service.MyServiceBlueTooth".equals(service.service.getClassName())) {
+                Log.i(TAG, "isServiceRunning: 已开启");
+                return true;
+            }
+        }
+        Log.i(TAG, "isServiceRunning: 未开启");
+        return false;
+    }
+
+
 }

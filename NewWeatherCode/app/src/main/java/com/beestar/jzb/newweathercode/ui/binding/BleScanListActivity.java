@@ -1,5 +1,6 @@
-package com.beestar.jzb.newweathercode.ui.addstation;
+package com.beestar.jzb.newweathercode.ui.binding;
 
+import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
@@ -68,6 +69,12 @@ public class BleScanListActivity extends BaseActivity implements View.OnClickLis
                             break;
                     }
                     break;
+                case MyServiceBlueTooth.BING_FAILD:
+                    startActivity(new Intent(BleScanListActivity.this,BindFaildActivity.class));
+                    break;
+                case MyServiceBlueTooth.BING_SUCCESS:
+                    startActivity(new Intent(BleScanListActivity.this,BindSuccessActivity.class));
+                    break;
             }
         }
     };
@@ -122,6 +129,9 @@ public class BleScanListActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
+        if (!isServiceRunning()){
+            startService(new Intent(BleScanListActivity.this,MyServiceBlueTooth.class));
+        }
         BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
         if (null == adapter) {
             //蓝牙不支持
@@ -212,6 +222,8 @@ public class BleScanListActivity extends BaseActivity implements View.OnClickLis
     private IntentFilter makeFilter() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        filter.addAction(MyServiceBlueTooth.BING_SUCCESS);
+        filter.addAction(MyServiceBlueTooth.BING_FAILD);
         return filter;
     }
     /**
@@ -235,4 +247,15 @@ public class BleScanListActivity extends BaseActivity implements View.OnClickLis
             return addressflag;
         }
     }
+    //判断蓝牙服务是否已经开启
+    private boolean isServiceRunning() {
+        ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if ("com.beestar.jzb.newweathercode.service.MyServiceBlueTooth".equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

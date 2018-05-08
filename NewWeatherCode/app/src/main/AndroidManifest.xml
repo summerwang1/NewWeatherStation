@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" />
@@ -56,41 +57,50 @@
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-        <activity android:name=".ui.MainActivity">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.BaseActivity" />
+        <activity android:name=".ui.StationInfoActivity" />
+        <activity android:name=".ui.login_rigister.LoginActivity" />
+        <activity android:name=".ui.login_rigister.WelcomeActivity" />
+        <activity android:name=".ui.login_rigister.NewResgiteActivity" />
+        <activity
+            android:name=".ui.MenuActivity"
+            android:launchMode="singleTask"
+           >
+            <!---->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.BaseActivity" />
-        <activity android:name=".ui.StationInfoActivity" />
-        <activity android:name=".ui.ScanAndBindActivity" />
-        <activity android:name=".ui.login_rigister.LoginActivity" />
-        <activity android:name=".ui.login_rigister.WelcomeActivity" />
-        <activity android:name=".ui.login_rigister.NewResgiteActivity" />
-        <activity android:name=".ui.MenuActivity" />
         <activity android:name=".ui.addstation.AddBoolBlueToothActivity" />
         <activity android:name=".ui.addstation.AddBoolStationActivity" />
         <activity android:name=".ui.addstation.AddStaionOffActivity" />
         <activity android:name=".ui.addstation.AddStartActivity" />
-        <activity android:name=".ui.addstation.BleScanListActivity" />
+        <activity android:name=".ui.binding.BleScanListActivity" />
         <activity android:name=".ui.myinfo.MyHomeActivity" />
         <activity android:name=".ui.myinfo.MyInfoActivity" />
         <activity android:name=".ui.myinfo.CallUSActivity" />
-        <activity android:name=".ui.myinfo.AboutAppActivity"></activity>
+        <activity android:name=".ui.myinfo.AboutAppActivity" />
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.beestar.jzb.newweathercode"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
 
+        <activity android:name=".ui.setting.MyPersonActivity" />
+        <activity android:name=".ui.setting.NodiscrbActivity" />
+        <activity android:name=".ui.setting.NodiscrbTimeActivity" />
+        <activity android:name=".ui.setting.UpdataActivity" />
+        <activity android:name=".ui.binding.BindSuccessActivity" />
+        <activity android:name=".ui.binding.BindFaildActivity"></activity>
     </application>
 
 </manifest>

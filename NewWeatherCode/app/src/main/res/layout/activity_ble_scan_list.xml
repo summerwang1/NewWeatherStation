@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@mipmap/qxz_dl_bj"
-    tools:context="com.beestar.jzb.newweathercode.ui.addstation.BleScanListActivity">
+    tools:context="com.beestar.jzb.newweathercode.ui.binding.BleScanListActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

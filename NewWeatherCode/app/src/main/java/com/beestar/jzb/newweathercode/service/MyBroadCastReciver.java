@@ -19,6 +19,7 @@ import com.beestar.jzb.newweathercode.MyAPP;
 import com.beestar.jzb.newweathercode.bean.DeviceBean;
 import com.beestar.jzb.newweathercode.gen.DeviceBeanDao;
 import com.beestar.jzb.newweathercode.utils.ActivityController;
+import com.beestar.jzb.newweathercode.utils.Keyparameter;
 
 /**
  * Created by jzb on 2017/11/28.
@@ -58,7 +59,7 @@ public class MyBroadCastReciver extends BroadcastReceiver {
                 if (deviceBean==null){
                     Log.i(TAG, "onReceive: 没有符合条件的对象");
 
-                    deviceBeanDao.insert(new DeviceBean(device.getName(),null,device.getAddress(),true,true));
+                    deviceBeanDao.insert(new DeviceBean(device.getName(),null,device.getAddress(),true,true, Keyparameter.BLETYPECODE));
                 }else {
                     Log.i(TAG, "onReceive: you符合条件的对象"+deviceBean.getName());
 

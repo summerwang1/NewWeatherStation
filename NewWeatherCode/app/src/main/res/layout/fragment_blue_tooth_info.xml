@@ -56,7 +56,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginTop="10dp"
-            android:text="南京"
+            android:id="@+id/location_text"
+            android:text="--"
             android:textColor="@color/location_text_color1"
             android:textSize="18sp" />
     </RelativeLayout>
@@ -82,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@id/center_view"
-            android:text="优"
+            android:text="--"
             android:textColor="@color/location_text_color1"
             android:textSize="24sp" />
 
@@ -453,12 +454,15 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/layout_8"
         >
-        <ImageView
+        <Button
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_centerInParent="true"
             android:id="@+id/call_btn"
-            android:src="@mipmap/an_hj1" />
+            android:text="呼叫"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:background="@mipmap/qxz_sbzy_ssqxzan_hj3" />
     </RelativeLayout>
 
 </android.support.percent.PercentRelativeLayout>

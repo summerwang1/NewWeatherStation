@@ -1,5 +1,6 @@
 package com.beestar.jzb.newweathercode.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -17,14 +18,21 @@ import com.beestar.jzb.newweathercode.MyAPP;
 import com.beestar.jzb.newweathercode.R;
 import com.beestar.jzb.newweathercode.adapter.FragmentViewPagerAdapter;
 import com.beestar.jzb.newweathercode.bean.DeviceBean;
+import com.beestar.jzb.newweathercode.bean.MessageEvent;
+import com.beestar.jzb.newweathercode.bean.Weather_Bean;
 import com.beestar.jzb.newweathercode.fragment.BlueToothInfoFragment;
 import com.beestar.jzb.newweathercode.gen.DeviceBeanDao;
 import com.beestar.jzb.newweathercode.helper.PermissionHelper;
+import com.beestar.jzb.newweathercode.service.MyServiceBlueTooth;
+import com.beestar.jzb.newweathercode.utils.URL;
+import com.tsy.sdk.myokhttp.response.GsonResponseHandler;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StationInfoActivity extends AppCompatActivity implements View.OnClickListener {
+public class StationInfoActivity extends BaseActivity implements View.OnClickListener {
 
 
     private String TAG = "Station_InfoActivity";
@@ -38,6 +46,7 @@ public class StationInfoActivity extends AppCompatActivity implements View.OnCli
     private DeviceBeanDao deviceBeanDao;
     private List<DeviceBean> list;
     private FragmentViewPagerAdapter fragmentViewPagerAdapter;
+    private List<BlueToothInfoFragment> fragmentList=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,21 +55,31 @@ public class StationInfoActivity extends AppCompatActivity implements View.OnCli
         deviceBeanDao = MyAPP.getContext().getDaoSession().getDeviceBeanDao();
         list = deviceBeanDao.queryBuilder().list();
         initView();
-        setVPLimit();
-        setFragmentdata();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        list = deviceBeanDao.queryBuilder().list();
+        setVPLimit(list.size());
+        setFragmentdata(list.size());
         getPermission();
     }
 
-    private void setFragmentdata() {
+    private void setFragmentdata(int size) {
+        fragmentList.clear();
         List<Fragment> fml=new ArrayList<>();
-        for (int i=0;i<4;i++){
+        for (int i=0;i<size;i++){
             fml.add(BlueToothInfoFragment.newInstance(i));
+            fragmentList.add(BlueToothInfoFragment.newInstance(i));
         }
         fragmentViewPagerAdapter.addFragmentData(fml);
+
     }
 
-    private void setVPLimit() {
-        mInfoVpStation.setOffscreenPageLimit(4);
+    private void setVPLimit(int size) {
+        mInfoVpStation.setOffscreenPageLimit(size);
         fragmentViewPagerAdapter = new FragmentViewPagerAdapter(getSupportFragmentManager(), new ArrayList<Fragment>());
         mInfoVpStation.setAdapter(fragmentViewPagerAdapter);
     }
@@ -133,10 +152,17 @@ public class StationInfoActivity extends AppCompatActivity implements View.OnCli
                 break;
             case R.id.station_setting:
                 // TODO 18/05/04
+                diconnectst();
                 break;
             default:
                 break;
         }
+    }
+    //断开连接
+    private void diconnectst() {
+        sendData(list.get(fragmentViewPagerAdapter.getPostion()).getMac(),"CC");
+        disConnect(list.get(fragmentViewPagerAdapter.getPostion()).getMac());
+        startActivity(new Intent(StationInfoActivity.this,MenuActivity.class));
     }
 
     private class MyLocationListener extends BDAbstractLocationListener {
@@ -144,13 +170,56 @@ public class StationInfoActivity extends AppCompatActivity implements View.OnCli
         public void onReceiveLocation(BDLocation bdLocation) {
 
             if (bdLocation.getAddrStr() != null) {
-                Log.i(TAG, "onReceiveLocation: " + bdLocation.getAddrStr());
-
                 mlocationClient.stop();
+                Log.i(TAG, "onReceiveLocation: " + bdLocation.getAddrStr());
+                for (int i=0;i<fragmentList.size();i++){
+                    Log.i(TAG, "onReceiveLocation: "+fragmentList.size());
+                    //设置地址
+                    BlueToothInfoFragment blueToothInfoFragment = (BlueToothInfoFragment) fragmentViewPagerAdapter.instantiateItem(mInfoVpStation, i);
+                    blueToothInfoFragment.setLocationText(bdLocation.getCity(),list.get(i).getName());
+                    getWeatherInfor(bdLocation.getCity(),i);
+                }
             } else {
+
             }
         }
     }
+    public void sendData(String address,String data){
+        Intent intent=new Intent();
+        intent.setAction(MyServiceBlueTooth.SEND_DATA);
+        intent.putExtra("address",address);
+        intent.putExtra("data",data);
+        sendBroadcast(intent);
+    }
+    public void disConnect(String address){
+        Intent intent=new Intent();
+        intent.setAction(MyServiceBlueTooth.DISCONNECTED);
+        intent.putExtra("address",address);
+        sendBroadcast(intent);
+    }
+    //获取天气信息
+    private void getWeatherInfor(String city, final int j) {
+        MyAPP.getContext().getMyOkHttp().post()
+                .url(URL.url_weather)
+                .tag(this)
+                .addParam("city", city)
+                .addParam("appkey", "5468ea49f7a75f15be7a51975ddf9087")
+                .enqueue(new GsonResponseHandler<Weather_Bean>() {
+                    @Override
+                    public void onFailure(int statusCode, String error_msg) {
 
+                    }
+                    @Override
+                    public void onSuccess(int statusCode, Weather_Bean response) {
+                        Weather_Bean.ResultBeanX result = response.getResult();
 
+                        BlueToothInfoFragment blueToothInfoFragment = (BlueToothInfoFragment) fragmentViewPagerAdapter.instantiateItem(mInfoVpStation, j);
+                        blueToothInfoFragment.setWertherData(Integer.parseInt(result.getResult().getAqi().getPm2_5()),
+                                response.getResult().getResult().getUpdatetime().substring(10)+"发布",
+                                response.getResult().getResult().getAqi().getPm2_5(),
+                                response.getResult().getResult().getTemp()
+                                );
+                    }
+                });
+    }
 }

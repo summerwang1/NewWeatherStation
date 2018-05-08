@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.beestar.jzb.newweathercode.R;
 import com.beestar.jzb.newweathercode.ui.BaseActivity;
+import com.beestar.jzb.newweathercode.ui.binding.BleScanListActivity;
 import com.beestar.jzb.newweathercode.utils.CacheActivity;
 
 public class AddStartActivity extends BaseActivity implements View.OnClickListener {
